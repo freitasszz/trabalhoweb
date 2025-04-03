@@ -5,6 +5,7 @@ body {
     padding: 0;
     background-color: #f4f4f4;
     text-align: center;
+    transition: background 0.3s, color 0.3s;
 }
 
 /* Cabeçalho */
@@ -12,6 +13,7 @@ header {
     background-color: #ff0000;
     color: white;
     padding: 20px;
+    transition: background 0.3s, color 0.3s;
 }
 
 nav ul {
@@ -38,6 +40,7 @@ section {
     width: 80%;
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    transition: background 0.3s, color 0.3s;
 }
 
 img {
@@ -107,3 +110,60 @@ footer {
         margin: 5px 10px;
     }
 }   
+
+/* ============================ */
+/*          BOTÃO TEMA          */
+/* ============================ */
+
+/* Estilizando o botão do tema */
+#theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #f4f4f4;
+    border: none;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background 0.3s, color 0.3s;
+}
+
+/* Modo escuro */
+.dark-mode {
+    background-color: #121212;
+    color: white;
+}
+
+/* Mantém o cabeçalho vermelho no modo escuro */
+.dark-mode header {
+    background-color: #ff0000;
+}
+
+.dark-mode main, 
+.dark-mode footer {
+    color: white;
+}
+
+/* Altera a cor dos links para branco no modo escuro */
+.dark-mode a {
+    color: white;
+}
+
+.dark-mode a:hover {
+    color: white;
+}
+
+/* Altera o fundo das seções no modo escuro */
+.dark-mode section {
+    background-color: #1e1e1e;
+    color: white;
+    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.1);
+}
+
+/* Estiliza o botão no modo escuro */
+.dark-mode #theme-toggle {
+    background-color: #444;
+    color: white;
+    border: 1px solid white;
+}
