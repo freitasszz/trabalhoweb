@@ -167,3 +167,58 @@ footer {
     color: white;
     border: 1px solid white;
 }
+/* ======================== */
+/*     CARROSSEL DE IMAGENS */
+/* ======================== */
+
+
+.carrossel {
+    position: relative;
+    overflow: hidden;
+    max-width: 600px;
+    margin: 0 auto;
+    border-radius: 10px;
+}
+
+.carrossel-imagens {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    width: 100%;
+}
+
+.carrossel-imagens img {
+    width: 100%;
+    height: 400px; /* altura fixa opcional */
+    object-fit: contain;
+    flex-shrink: 0;
+    background-color: #fff; /* fundo neutro caso a imagem não preencha tudo */
+}
+
+/* Botões do carrossel */
+.carrossel .prev,
+.carrossel .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    border: none;
+    color: white;
+    font-size: 24px;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 2;
+    border-radius: 50%;
+}
+
+.carrossel .prev {
+    left: 10px;
+}
+
+.carrossel .next {
+    right: 10px;
+}
+
+.carrossel .prev:hover,
+.carrossel .next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}

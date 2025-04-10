@@ -15,7 +15,7 @@
                 <li><a href="#sobre">Sobre</a></li>
                 <li><a href="#mapa">Mapa</a></li>
                 <li><a href="#eventos">Eventos</a></li>
-                <li><a href="#contato">Contato</a></li>
+                <li><a href="#contato" id="contato-link">Contato</a></li>
             </ul>
         </nav>
         <button id="theme-toggle">🌙</button>
@@ -23,8 +23,8 @@
 
     <main>
         <section id="sobre">
-            <h2>Bem-vindos Calouros da Universidade Presbiteriana Mackenzie </h2>
-            <p>O site do calouro mackenzista é uma plataforma criada para oferecer informações e recursos importantes aos novos estudantes da universidade. Seu objetivo é auxiliar na adaptação dos calouros à vida universitária, proporcionando conhecimento sobre a estrutura da instituição, serviços disponíveis, atividades extracurriculares, eventos e outros aspectos relevantes.</p>
+            <h2>Bem-vindos Calouros da Universidade Presbiteriana Mackenzie</h2>
+            <p>O site do calouro mackenzista é uma plataforma criada para oferecer informações e recursos importantes aos novos estudantes da universidade.</p>
         </section>
 
         <section id="mapa">
@@ -36,38 +36,83 @@
         <section id="eventos">
             <h2>Eventos para Calouros</h2>
             <p>Fique por dentro das palestras e atividades de boas-vindas.</p>
+            
+            <!-- Carrossel de Imagens -->
+            <div class="carrossel">
+                <button class="prev">❮</button>
+                <div class="carrossel-imagens">
+                    <img src="santander.jpg" alt="Evento 1" />
+                    <img src="WTT25.jpg" alt="Evento 2" />
+                    <img src="womenTEch.jpg" alt="Evento 3" />
+                    <img src="vagas.jpg" alt="Evento 4" />
+                </div>
+                <button class="next">❯</button>
+            </div>
         </section>
     </main>
 
     <footer>
         <p>&copy; 2025 Universidade Presbiteriana Mackenzie - Todos os direitos reservados.</p>
     </footer>
+
     <script>
-    document.addEventListener("DOMContentLoaded", () => {
-        const themeToggle = document.getElementById("theme-toggle");
-        const body = document.body;
+        document.addEventListener("DOMContentLoaded", () => {
+            const themeToggle = document.getElementById("theme-toggle");
+            const body = document.body;
 
-        
-        if (localStorage.getItem("theme") === "dark") {
-            body.classList.add("dark-mode");
-            themeToggle.textContent = "☀️"; 
-        }
-
-        // Alterna o tema e salva a preferência do usuário
-        themeToggle.addEventListener("click", () => {
-            body.classList.toggle("dark-mode");
-
-            if (body.classList.contains("dark-mode")) {
-                localStorage.setItem("theme", "dark");
+            if (localStorage.getItem("theme") === "dark") {
+                body.classList.add("dark-mode");
                 themeToggle.textContent = "☀️"; 
-            } else {
-                localStorage.setItem("theme", "light");
-                themeToggle.textContent = "🌙"; 
             }
+
+            themeToggle.addEventListener("click", () => {
+                body.classList.toggle("dark-mode");
+                if (body.classList.contains("dark-mode")) {
+                    localStorage.setItem("theme", "dark");
+                    themeToggle.textContent = "☀️"; 
+                } else {
+                    localStorage.setItem("theme", "light");
+                    themeToggle.textContent = "🌙"; 
+                }
+            });
+
+            // ============= Carrossel =============
+            const carrosselImagens = document.querySelector('.carrossel-imagens');
+            const imagens = document.querySelectorAll('.carrossel-imagens img');
+            const prevButton = document.querySelector('.carrossel .prev');
+            const nextButton = document.querySelector('.carrossel .next');
+
+            let index = 0;
+
+            function updateCarrossel() {
+                const width = imagens[0].clientWidth;
+                carrosselImagens.style.transform = `translateX(${-index * width}px)`;
+            }
+
+            prevButton.addEventListener('click', () => {
+                index = (index - 1 + imagens.length) % imagens.length;
+                updateCarrossel();
+            });
+
+            nextButton.addEventListener('click', () => {
+                index = (index + 1) % imagens.length;
+                updateCarrossel();
+            });
+
+            window.addEventListener('resize', updateCarrossel);
+            updateCarrossel();
+
+            // ============= Contato com Prompt ============
+            const contatoLink = document.getElementById("contato-link");
+            contatoLink.addEventListener("click", (e) => {
+                e.preventDefault(); // impede a rolagem automática
+                prompt(
+                    "Nos mande um e-mail ou entre em contato por telefone:",
+                    "guiacalourosmack@gmail.com | (11) 91234-5678"
+                );
+            });
         });
-    });
     </script>
-    
 
 </body>
 </html>
